@@ -9,18 +9,18 @@ function isPasswordValid(password) {
   let letters = [...passCount.toString()] //spread array of characters
   let msg = ''
 const arrPass = new Array()
-const arrPop = new Array()
   for (let ch of letters) {
     msg += ch + ''
   }
    arrPass.push(msg.split(''))
+  //  delete arrPass[0]
 console.log(msg)
 console.log(arrPass);
 
 console.log(arrPass[0][0]);
 for (let index = 0; index < arrPass.length; index++) {
-  if (arrPass[index][index] > 8) {
-    
+  if (arrPass[index][index.length] > 8) {
+    return false
   }
 }
 
