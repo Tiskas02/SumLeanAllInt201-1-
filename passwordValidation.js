@@ -1,44 +1,41 @@
 // Write your student id, firstname, and lastname in a single line comment here
 //65130500078
 function isPasswordValid(password) {
-  //write your code here...
-  if(!password){
+    //write your code here...
+  if (!password){
     return false
   }
-  let passCount =[password]
-  let letters = [...passCount.toString()] //spread array of characters
-  let msg = ''
-const arrPass = new Array()
-  for (let ch of letters) {
-    msg += ch + ''
-  }
-   arrPass.push(msg.split(''))
-  //  delete arrPass[0]
-console.log(msg)
-console.log(arrPass);
-
-console.log(arrPass[0][0]);
-for (let index = 0; index < arrPass.length; index++) {
-  if (arrPass[index][index.length] > 8) {
-    return false
-  }
-}
-
+  const passwordArr = [...password]
+  const passwordDigit = '1234567890'
+  const passwordSpecial ='@#$%^&\*!'
+  const passwordSpecialNum ='@#$%^&\*!1234567980'
+  const passwordUpper = password.toUpperCase().split('')
+  console.log(passwordUpper);
+  const passSplitUpper = passwordUpper.filter(x => !passwordSpecialNum.includes(x))
+  const passwordLower = password.toLowerCase().split('')
+  const passSplitLower = passwordLower.filter(x => !passwordSpecialNum.includes(x))
+  const storeData = [false,false,false,false,false]
+  passwordArr.forEach(char => {
+    if(passwordArr.length >= 8){
+      storeData[0] = true
+    }
+    if(passSplitUpper.some(UpperChar => UpperChar === char)){
+      storeData[1] = true
+    }
+    if (passSplitLower.some(LowerChar => LowerChar === char)) {
+      storeData[2] = true
+    }
+    if (passwordDigit.split('').some(Digit=> Digit === char)) {
+      storeData[3] = true
+    }
+    if (passwordSpecial.split('').some(Digit=> Digit === char)) {
+      storeData[4] = true
+    }
+  });
+  return storeData.every(x => x)
  
-
-  // for (let index = 0; index < array.length; index++) {
-  //   const element = array[index];
-    
-  // }
-
-  
 }
-console.log(isPasswordValid(555));
-// const paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
-// const regex = /[A-Z]/g;
-// const found = paragraph.match(regex);
+console.log(isPasswordValid('Ajl@4'));
 
-// console.log(found);
-// // Expected output: Array ["T", "I"]
 
 module.exports = isPasswordValid
